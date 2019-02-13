@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 def main():
     f = open('Neo vbipMap.txt', 'r')
 
-    # fw = open('result2.txt', 'w')
+    # fw = open('GPStoKM_result.txt', 'w')
 
     latitude_list = []
     longitude_list = []
@@ -36,6 +36,7 @@ def main():
         
         coords_1 = (latitude_new,longitude_new)
         coords_2 = (latitude, longitude)
+        # KM -> M
         result = geopy.distance.distance(coords_1, coords_2).km*1000
         print(result)
         # fw.write(str(result)+'\n')
