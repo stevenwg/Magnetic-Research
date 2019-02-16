@@ -142,8 +142,6 @@ def multi_map_difference_visualize(fileName_list):
             ax.plot(GPS_data_diff_list[idx][dot_idx,0], GPS_data_diff_list[idx][dot_idx,1], 
             'o', color = tuple((Mag_color_diff_list[dot_idx,0], Mag_color_diff_list[dot_idx,0], Mag_color_diff_list[dot_idx,0])), markersize = 5)
         ax.grid(True)
-        ax.set_xlim([25.030, 25.052])
-        ax.set_ylim([-121.557, -121.5545])
     
     # print('Mag_data_max_all: ' + str(Mag_data_max_all) + ', Mag_data_min_all: ' + str(Mag_data_min_all))
     plt.show()

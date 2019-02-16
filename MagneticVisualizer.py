@@ -12,12 +12,11 @@ def main():
     # mag_func.one_map_visualize(fileName)
 
     fileNameList = []
-    fileNameList.append('vbipMap_1_1.txt')
-    fileNameList.append('vbipMap_1_2.txt')
-    fileNameList.append('vbipMap_1_3.txt')
-    fileNameList.append('vbipMap_2_1.txt')
-    fileNameList.append('vbipMap_2_2.txt')
-    fileNameList.append('vbipMap_2_3.txt')
+    fileNameList.append('map/att_1_1 vbipMap.txt')
+    fileNameList.append('map/att_2_2 vbipMap.txt')
+    fileNameList.append('map/att_2_3 vbipMap.txt')
+    fileNameList.append('map/att_3_2 vbipMap.txt')
+    fileNameList.append('map/att_3_3 vbipMap.txt')
     
     # mag_func.multi_map_visualize(fileNameList)
     mag_func.multi_map_difference_visualize(fileNameList)
