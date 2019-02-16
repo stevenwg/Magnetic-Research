@@ -64,25 +64,26 @@ def one_map_visualize(fileName):
     for idx in range(len(GPS_data)):
         ax = plt.subplot(221)
         ax.set_title("MagX")
-        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,0], Mag_color_list[idx,0], Mag_color_list[idx,0])), markersize = 5)
+        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,0], Mag_color_list[idx,0], Mag_color_list[idx,0])), markersize = 2)
         ax.grid(True)
-        ax.set_xlim([25.030, 25.052])
+        # ax.set_xlim([25.030, 25.052])
         ax = plt.subplot(222)
         ax.set_title("MagY")
-        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,1], Mag_color_list[idx,1], Mag_color_list[idx,1])), markersize = 5)
+        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,1], Mag_color_list[idx,1], Mag_color_list[idx,1])), markersize = 2)
         ax.grid(True)
-        ax.set_xlim([25.030, 25.052])
+        # ax.set_xlim([25.030, 25.052])
         ax = plt.subplot(223)
         ax.set_title("MagZ")
-        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,2], Mag_color_list[idx,2], Mag_color_list[idx,2])), markersize = 5)
+        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,2], Mag_color_list[idx,2], Mag_color_list[idx,2])), markersize = 2)
         ax.grid(True)
-        ax.set_xlim([25.030, 25.052])
+        # ax.set_xlim([25.030, 25.052])
         ax = plt.subplot(224)
         ax.set_title("Mag")
-        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple(Mag_color_list[idx,:]), markersize = 5)
+        ax.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple(Mag_color_list[idx,:]), markersize = 2)
         ax.grid(True)
-        ax.set_xlim([25.030, 25.052])
+        # ax.set_xlim([25.030, 25.052])
         # l = plt.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,0], 0, Mag_color_list[idx,2])), markersize = 5)
+    ax.plot(GPS_data[1000,0], GPS_data[1000,1], 'o', color = (0,0,0), markersize = 5)
     plt.show()
     return
 
@@ -104,14 +105,20 @@ def multi_map_visualize(fileName_list):
     #     Mag_data_min_all = np.hstack((Mag_data_min_all, Mag_data_min))
     #     print('fileName: ' + fileName_list[idx] + ', Mag_data_max: ' + str(Mag_data_max) + ', Mag_data_min: ' + str(Mag_data_min))
         Mag_color_list = (Mag_data - Mag_data_min) / (Mag_data_max - Mag_data_min)
-        ax = plt.subplot(int(str(1)+str(len(fileName_list))+str(idx+1)))
+        # ax = plt.subplot(int(str(1)+str(len(fileName_list))+str(idx+1)))
+        ax = plt.subplot(int(str(len(fileName_list))+str(1)+str(idx+1)))
         ax.set_title(fileName_list[idx])
         for dot_idx in range(len(GPS_data)):
-            ax.plot(GPS_data[dot_idx,0], GPS_data[dot_idx,1], 
-            'o', color = tuple((Mag_color_list[dot_idx,2], Mag_color_list[dot_idx,2], Mag_color_list[dot_idx,2])), markersize = 5)
+            if (dot_idx > (len(GPS_data)-300)):
+                ax.plot(GPS_data[dot_idx,0], GPS_data[dot_idx,1], 
+                'o', color = tuple((Mag_color_list[dot_idx,0], Mag_color_list[dot_idx,1], Mag_color_list[dot_idx,2])), markersize = 5)
         ax.grid(True)
-        ax.set_xlim([25.030, 25.052])
-        ax.set_ylim([-121.557, -121.5545])
+        # 
+        # ax.set_xlim([25.030, 25.052])
+        # ax.set_ylim([-121.557, -121.5545])
+
+        ax.set_xlim([25.081, 25.0822])
+        ax.set_ylim([-121.5553, -121.5557])
     
     # print('Mag_data_max_all: ' + str(Mag_data_max_all) + ', Mag_data_min_all: ' + str(Mag_data_min_all))
     plt.show()
@@ -136,12 +143,15 @@ def multi_map_difference_visualize(fileName_list):
     
     for idx in range(len(fileName_list)):
         Mag_color_diff_list = (Mag_data_diff_list[idx] - Mag_data_diff_min) / (Mag_data_diff_max - Mag_data_diff_min)
-        ax = plt.subplot(int(str(1)+str(len(fileName_list))+str(idx+1)))
+        ax = plt.subplot(int(str(len(fileName_list))+str(1)+str(idx+1)))
         ax.set_title(fileName_list[idx])
         for dot_idx in range(len(GPS_data_diff_list[idx])):
-            ax.plot(GPS_data_diff_list[idx][dot_idx,0], GPS_data_diff_list[idx][dot_idx,1], 
-            'o', color = tuple((Mag_color_diff_list[dot_idx,0], Mag_color_diff_list[dot_idx,0], Mag_color_diff_list[dot_idx,0])), markersize = 5)
-        ax.grid(True)
+            if (dot_idx > (len(GPS_data_diff_list[idx])-300)):
+                ax.plot(GPS_data_diff_list[idx][dot_idx,0], GPS_data_diff_list[idx][dot_idx,1], 
+                'o', color = tuple((Mag_color_diff_list[dot_idx,0], Mag_color_diff_list[dot_idx,0], Mag_color_diff_list[dot_idx,0])), markersize = 5)
+                ax.grid(True)
+                ax.set_xlim([25.0811, 25.0821])
+                ax.set_ylim([-121.5553, -121.5557])
     
     # print('Mag_data_max_all: ' + str(Mag_data_max_all) + ', Mag_data_min_all: ' + str(Mag_data_min_all))
     plt.show()
