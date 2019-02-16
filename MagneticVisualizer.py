@@ -19,8 +19,10 @@ def main():
     fileNameList.append('vbipMap_2_2.txt')
     fileNameList.append('vbipMap_2_3.txt')
     
-    mag_func.multi_map_visualize(fileNameList)
+    # mag_func.multi_map_visualize(fileNameList)
+    mag_func.multi_map_difference_visualize(fileNameList)
     
     
 if __name__ == "__main__":
     main()
+    
