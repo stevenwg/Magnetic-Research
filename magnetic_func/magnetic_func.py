@@ -127,8 +127,6 @@ def multi_map_visualize(fileName_list):
 def multi_map_difference_visualize(fileName_list):
     GPS_data_diff_list = []
     Mag_data_diff_list = []
-    Mag_data_max_all = []
-    Mag_data_min_all = []
     plt.figure(1)
     for idx in range(len(fileName_list)):
         GPS_data, Mag_data = magnectic_read(fileName_list[idx])
@@ -154,5 +152,44 @@ def multi_map_difference_visualize(fileName_list):
                 ax.set_ylim([-121.5553, -121.5557])
     
     # print('Mag_data_max_all: ' + str(Mag_data_max_all) + ', Mag_data_min_all: ' + str(Mag_data_min_all))
+    plt.show()
+    return
+
+
+def Gaussian(mu, sigma, x):
+    return (1.0 / math.sqrt(2.0 * math.pi * (sigma * sigma))) * math.exp(- ((mu-x) * (mu-x)) / (2 * sigma * sigma))
+
+def multi_map_difference_curve_visualize(fileName_list):
+    GPS_data_diff_list = []
+    Mag_data_diff_list = []
+    plt.figure(1)
+    for idx in range(len(fileName_list)):
+        GPS_data, Mag_data = magnectic_read(fileName_list[idx])
+        # Calculate difference values of map
+        GPS_data_diff = np.delete(GPS_data, 0, 0)
+        Mag_data_diff = Mag_data[1:, :] - Mag_data[0:-1, :]
+        GPS_data_diff_list.append(GPS_data_diff)
+        Mag_data_diff_list.append(Mag_data_diff)
+
+    Mag_data_diff_max = np.concatenate(Mag_data_diff_list, axis=0).max(axis=0)
+    Mag_data_diff_min = np.concatenate(Mag_data_diff_list, axis=0).min(axis=0)
+
+    x = []
+    y = []
+    plt.figure(1)
+    for idx in range(len(fileName_list)):
+        Mag_color_diff_list = (Mag_data_diff_list[idx] - Mag_data_diff_min) / (Mag_data_diff_max - Mag_data_diff_min)
+        ax = plt.subplot(int(str(len(fileName_list))+str(1)+str(idx+1)))
+        ax.set_title(fileName_list[idx])
+
+        x = list(range(400))
+        y = []
+        for dot_idx in range(len(GPS_data_diff_list[idx])):
+            if (dot_idx >= (len(GPS_data_diff_list[idx])-400)):
+                y.append( 1 * Mag_data_diff_list[idx][dot_idx,0] + 1 * Mag_data_diff_list[idx][dot_idx,2])
+
+        ax.plot(x, y, linestyle='-', color = tuple((0, 0, 0)))
+        ax.grid(True)
+
     plt.show()
     return

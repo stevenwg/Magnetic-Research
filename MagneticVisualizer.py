@@ -19,9 +19,9 @@ def main():
     fileNameList.append('map/att_3_2 vbipMap 拷貝.txt')
     fileNameList.append('map/att_3_3 vbipMap 拷貝.txt')
     
-    mag_func.multi_map_visualize(fileNameList)
+    # mag_func.multi_map_visualize(fileNameList)
     # mag_func.multi_map_difference_visualize(fileNameList)
-    
+    mag_func.multi_map_difference_curve_visualize(fileNameList)
     
 if __name__ == "__main__":
     main()
