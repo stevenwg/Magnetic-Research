@@ -83,7 +83,7 @@ def one_map_visualize(fileName):
         ax.grid(True)
         # ax.set_xlim([25.030, 25.052])
         # l = plt.plot(GPS_data[idx,0], GPS_data[idx,1], 'o', color = tuple((Mag_color_list[idx,0], 0, Mag_color_list[idx,2])), markersize = 5)
-    ax.plot(GPS_data[1000,0], GPS_data[1000,1], 'o', color = (0,0,0), markersize = 5)
+    # ax.plot(GPS_data[1000,0], GPS_data[1000,1], 'o', color = (0,0,0), markersize = 5)
     plt.show()
     return
 
