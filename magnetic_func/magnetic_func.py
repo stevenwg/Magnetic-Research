@@ -17,9 +17,11 @@ def magnectic_read(fileName):
             if idx == 2:
                 latitude = float(word)
                 latitude_list.append(latitude)
+                # longitude_list.append(latitude*(-1))
             elif idx == 5:
                 longitude = float(word)
                 longitude_list.append(longitude*(-1))
+                # latitude_list.append(longitude*(-1))
             elif idx == 8:
                 MagX = float(word)
                 MagX_list.append(MagX)

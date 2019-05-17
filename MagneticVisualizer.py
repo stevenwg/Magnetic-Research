@@ -21,7 +21,7 @@ def main():
     # fileName = '美麗華 vbipMap.txt'
     # fileName = 'vbipMap_1_3.txt'
     # fileName = 'map/att_2_2 vbipMap 拷貝.txt'
-    fileName = 'vbipMap.txt'
+    fileName = 'map/vbipMap2 MRT.txt'
     mag_func.one_map_visualize(fileName)
 
 # ---------------- Multi Map ----------------
